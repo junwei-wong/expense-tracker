@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
+import Modal from "../UI/Modal";
 import "./NewExpense.css";
 
 const NewExpense = ({ onAddExpense }) => {
@@ -16,10 +17,15 @@ const NewExpense = ({ onAddExpense }) => {
 
   return (
     <div className="new-expense">
-      {!formStatus && (
-        <button onClick={toggleFormHandler}>Add New Expense</button>
+      <button onClick={toggleFormHandler}>Add New Expense</button>
+      {formStatus && (
+        <Modal title="Add Expense">
+          <ExpenseForm
+            onSaveExpenseData={saveExpenseDataHandler}
+            toggleForm={toggleFormHandler}
+          />
+        </Modal>
       )}
-      {formStatus && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} toggleForm={toggleFormHandler}/>}
     </div>
   );
 };
