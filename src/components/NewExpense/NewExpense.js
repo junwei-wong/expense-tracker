@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import Modal from "../UI/Modal";
+import Button from "../UI/Button";
 import "./NewExpense.css";
 
 const NewExpense = ({ onAddExpense }) => {
@@ -17,7 +18,7 @@ const NewExpense = ({ onAddExpense }) => {
 
   return (
     <div className="new-expense">
-      <button onClick={toggleFormHandler}>Add New Expense</button>
+      <Button onClick={toggleFormHandler}>Add New Expense</Button>
       {formStatus && (
         <Modal title="Add Expense">
           <ExpenseForm
