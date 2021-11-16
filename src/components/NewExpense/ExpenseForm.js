@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../UI/Button";
 import "./ExpenseForm.css";
 
 const ExpenseForm = ({ onSaveExpenseData, toggleForm }) => {
@@ -64,8 +65,8 @@ const ExpenseForm = ({ onSaveExpenseData, toggleForm }) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="button" onClick={toggleForm}>Cancel</button>
-        <button type="submit">Add Expense</button>
+        <Button onClick={toggleForm}>Cancel</Button>
+        <Button type="submit">Add Expense</Button>
       </div>
     </form>
   );
