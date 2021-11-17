@@ -2,7 +2,7 @@ import React from "react";
 import "./Button.css";
 
 const Button = (props) => {
-  const classes = props.ClassName ? props.ClassName : "";
+  const classes = props.className ? props.className : "";
   return (
     <button
       className={`button ${classes}`}
