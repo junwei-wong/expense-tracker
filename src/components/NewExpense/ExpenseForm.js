@@ -3,10 +3,12 @@ import Button from "../UI/Button";
 import "./ExpenseForm.css";
 
 const ExpenseForm = ({ onSaveExpenseData, toggleForm }) => {
+  const currentDate = new Date()
+  const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`
   const defaultFormValues = {
     title: "",
     amount: "",
-    date: "",
+    date: formattedDate,
   };
   const [enteredValue, setEnteredValue] = useState({ ...defaultFormValues });
 
