@@ -21,4 +21,7 @@
   padding: 0.5rem 3rem;
   font-weight: bold;
   border-radius: 6px;
+  cursor: pointer;
+  background-color: #40005d;
+  color: white;
 }
