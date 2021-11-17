@@ -20,8 +20,8 @@ const ExpenseList = ({ item }) => {
       <Card className="expenses-list-title">
         <label>Expenses List</label>
         <div>
-          {activeIndex !== '' && <Button>Delete</Button>}
-          {activeIndex !== '' && <Button>Edit</Button>}
+          {<Button className={activeIndex === '' ? "disabled" : ''}>Delete</Button>}
+          {<Button className={activeIndex === '' ? "disabled" : ''}>Edit</Button>}
         </div>
       </Card>
       <ul className="expenses-list">

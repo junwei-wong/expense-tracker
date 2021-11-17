@@ -25,3 +25,9 @@
 .button.alternative:active {
   background-color: #ddb3f8;
 }
+
+.button.disabled,
+.button[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
