@@ -31,10 +31,28 @@ const App = () => {
     setExpenses((prevExpenses) => [expense, ...prevExpenses]);
   };
 
+  const deleteExpenseHandler = (expenseIndex) => {
+    const newExpenses = [];
+    expenses.forEach((expense) => {
+      if (expense.id !== expenseIndex) newExpenses.push(expense);
+    });
+    setExpenses(newExpenses);
+  };
+
+  const editExpenseHandler = (expense, expenseIndex) => {
+    const newExpenses = [...expenses];
+    newExpenses[expenseIndex] = { ...expense };
+    setExpenses(newExpenses);
+  };
+
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses expenses={expenses} />
+      <Expenses
+        expenses={expenses}
+        onDeleteExpense={deleteExpenseHandler}
+        onEditExpense={editExpenseHandler}
+      />
     </div>
   );
 };

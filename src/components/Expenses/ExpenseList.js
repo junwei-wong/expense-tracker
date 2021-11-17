@@ -4,32 +4,45 @@ import Button from "../UI/Button";
 import Card from "../UI/Card";
 import "./ExpenseList.css";
 
-const ExpenseList = ({ item }) => {
-  const [activeIndex, setActiveIndex] = useState('');
+const ExpenseList = ({ item, onDeleteExpense }) => {
+  const [activeId, setActiveId] = useState("");
+  const enableButtons = activeId === "" ? "disabled" : "";
+
+  const activeIdHandler = (id) => {
+    setActiveId(id);
+  };
+
+  const deleteExpenseHandler = expenseId => {
+    onDeleteExpense(expenseId)
+    setActiveId("");
+  }
 
   if (item.length === 0) {
     return <h2 className="expenses-list__fallback">No expenses found.</h2>;
   }
-
-  const activeIndexHandler = (index) => {
-    setActiveIndex(index);
-  };
 
   return (
     <>
       <Card className="expenses-list-title">
         <label>Expenses List</label>
         <div>
-          {<Button className={activeIndex === '' ? "disabled" : ''}>Delete</Button>}
-          {<Button className={activeIndex === '' ? "disabled" : ''}>Edit</Button>}
+          {
+            <Button
+              className={enableButtons}
+              onClick={() => deleteExpenseHandler(activeId)}
+            >
+              Delete
+            </Button>
+          }
+          {<Button className={enableButtons}>Edit</Button>}
         </div>
       </Card>
       <ul className="expenses-list">
-        {item.map((expense, index) => (
+        {item.map((expense) => (
           <ExpenseItem
             key={expense.id}
-            onClick={() => activeIndexHandler(index)}
-            active={activeIndex === index}
+            onClick={() => activeIdHandler(expense.id)}
+            active={activeId === expense.id}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
