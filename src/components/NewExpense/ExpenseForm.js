@@ -27,6 +27,7 @@ const ExpenseForm = ({ onSaveExpenseData, toggleForm }) => {
       title: enteredValue.title,
       amount: +enteredValue.amount,
       date: new Date(enteredValue.date),
+      id: new Date(enteredValue.date).valueOf().toString(),
     });
     setEnteredValue(defaultFormValues);
   };

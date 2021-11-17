@@ -8,11 +8,7 @@ const NewExpense = ({ onAddExpense }) => {
   const [formStatus, setFormStatus] = useState(false);
   const toggleFormHandler = () => setFormStatus((prevStatus) => !prevStatus);
   const saveExpenseDataHandler = (enteredExpenseData) => {
-    const expenseData = {
-      ...enteredExpenseData,
-      id: Math.random().toString(),
-    };
-    onAddExpense(expenseData);
+    onAddExpense({...enteredExpenseData});
     toggleFormHandler();
   };
 
