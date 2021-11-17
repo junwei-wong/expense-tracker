@@ -20,6 +20,7 @@
 .expense-item:hover, 
 .expense-item.active {
   background: #a892ee;
+  cursor: pointer;
 }
 
 .expense-item h2 {
