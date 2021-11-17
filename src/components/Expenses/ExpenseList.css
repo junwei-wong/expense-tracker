@@ -3,6 +3,29 @@
   padding: 0;
 }
 
+.expenses-list-title {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.expenses-list-title label {
+  font-weight: bold;
+  color: white;
+  margin: 1.25rem 0;
+}
+
+.expenses-list-title button {
+  font-weight: bold;
+  padding: 0.5em 1em;
+  outline: 1px solid white;
+  margin: 0;
+}
+
+.expenses-list-title div {
+  margin: auto 0;
+}
+
 .expenses-list__fallback {
   color: white;
   text-align: center;
