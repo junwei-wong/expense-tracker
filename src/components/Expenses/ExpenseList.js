@@ -5,22 +5,27 @@ import Card from "../UI/Card";
 import ConfirmationModal from "../UI/ConfirmationModal";
 import "./ExpenseList.css";
 
-const ExpenseList = ({ item, onDeleteExpense }) => {
-  const [activeId, setActiveId] = useState("");
+const ExpenseList = ({ item, onDeleteExpense, onEditExpense }) => {
+  const [selectedExpense, setSelectedExpense] = useState("");
   const [modalStatus, setModalStatus] = useState("");
-  const enableButtons = activeId === "" ? "disabled" : "";
+  const enableButtons = selectedExpense === "" ? "disabled" : "";
 
-  const activeIdHandler = (id) => {
-    setActiveId(id);
+  const selectedExpenseHandler = (id) => {
+    setSelectedExpense(id);
   };
 
   const deleteExpenseHandler = () => {
-    onDeleteExpense(activeId);
-    setActiveId("");
-    setModalStatus("");
+    onDeleteExpense(selectedExpense.id);
+    clearModalStatus();
+  };
+
+  const editExpenseHanlder = (expense) => {
+    onEditExpense(expense, selectedExpense);
+    clearModalStatus();
   };
 
   const clearModalStatus = () => {
+    setSelectedExpense("");
     setModalStatus("");
   };
 
@@ -34,29 +39,27 @@ const ExpenseList = ({ item, onDeleteExpense }) => {
         <ConfirmationModal
           toCancel={clearModalStatus}
           toConfirm={deleteExpenseHandler}
-          expense={`${item[activeId]}`}
+          expense={selectedExpense}
         />
       )}
       <Card className="expenses-list-title">
         <label>Expenses List</label>
         <div>
-          {
-            <Button
-              className={enableButtons}
-              onClick={() => setModalStatus("delete")}
-            >
-              Delete
-            </Button>
-          }
-          {<Button className={enableButtons}>Edit</Button>}
+          <Button
+            className={enableButtons}
+            onClick={() => setModalStatus("delete")}
+          >
+            Delete
+          </Button>
+          <Button className={enableButtons}>Edit</Button>
         </div>
       </Card>
       <ul className="expenses-list">
         {item.map((expense) => (
           <ExpenseItem
             key={expense.id}
-            onClick={() => activeIdHandler(expense.id)}
-            active={activeId === expense.id}
+            onClick={() => selectedExpenseHandler(expense)}
+            active={selectedExpense.id === expense.id}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
