@@ -1,1 +1,11 @@
-node_modules
+/node_modules
+
+# testing
+/coverage
+
+# build
+/build
+
+# misc
+.eslintcache
+package-lock.json
